@@ -4,4 +4,4 @@
 cd /home/uninond/uninond
 
 # play the Windows ejection sound
-aplay static/bip-eject.wav
+aplay ./uninond/static/bip-eject.wav

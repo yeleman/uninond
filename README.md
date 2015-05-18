@@ -17,7 +17,7 @@ Ubuntu 14.04.2 with:
 
 * configure sound (unmute) via: `sudo alsamixer`
 * Deploy configuration (as root)
-    `# /home/uninond/uninond/scripts/deploy_conf.sh`
+    `# /home/uninond/uninond/uninond/scripts/deploy_conf.sh`
 * Create virtualenv and start project
 
         # pip install pew

@@ -13,7 +13,7 @@ fi
 sysctl -w net.ipv4.ip_forward=1
 
 # hostapd handles the rest
-hostapd /home/uninond/uninond/conf/hostapd.conf 1>/dev/null
+hostapd /home/uninond/uninond/uninond/conf/hostapd.conf 1>/dev/null
 
 # kill dhcp
 killall dhcpd

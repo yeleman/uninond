@@ -9,5 +9,5 @@ SHUT=`/home/uninond/.local/share/virtualenvs/uninondenv/bin/python -c 'import ac
 
 if [ "$SHUT" = "Y" ]
 then
-    ./scripts/powerbtn.sh "System battery criticaly low (<8%). shutting down"
+    ./uninond/scripts/powerbtn.sh "System battery criticaly low (<8%). shutting down"
 fi

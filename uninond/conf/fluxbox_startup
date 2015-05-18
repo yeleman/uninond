@@ -6,7 +6,7 @@
 
 export DISPLAY=:0
 
-/home/uninond/uninond/scripts/launch_firefox.sh &
+/home/uninond/uninond/uninond/scripts/launch_firefox.sh &
 
 exec fluxbox
 # or if you want to keep a log:

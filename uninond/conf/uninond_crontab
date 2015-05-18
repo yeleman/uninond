@@ -24,7 +24,7 @@
 #
 # m h  dom mon dow   command
 
-@reboot /home/uninond/uninond/scripts/expiration_check.sh
-0   */6   *   *   *  /home/uninond/uninond/scripts/expiration_check.sh
+@reboot /home/uninond/uninond/uninond/scripts/expiration_check.sh
+0   */6   *   *   *  /home/uninond/uninond/uninond/scripts/expiration_check.sh
 
-@reboot /home/uninond/uninond/scripts/start_runserver.sh
+@reboot /home/uninond/uninond/uninond/scripts/start_runserver.sh
