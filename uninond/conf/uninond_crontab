@@ -23,5 +23,8 @@
 # For more information see the manual pages of crontab(5) and cron(8)
 #
 # m h  dom mon dow   command
-@reboot /home/uninond/uninind/scripts/expiration_check.sh
-0   */6   *   *   *  /home/uninond/uninind/scripts/expiration_check.sh
+
+@reboot /home/uninond/uninond/scripts/expiration_check.sh
+0   */6   *   *   *  /home/uninond/uninond/scripts/expiration_check.sh
+
+@reboot /home/uninond/uninond/scripts/start_runserver.sh
