@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<table id="floodevents_list" class="table table-striped table-bordered table-hover">
+	<thead>
+		<caption>Toutes les inondations déclarées dans le système</caption>
+		<tr><th>Identifiant</th><th>Statut</th><th>Localité</th><th>Mise à jour</th>
+		<th><acronym title="Surface submergée">SS</acronym></th><th><acronym title="Maisons détruires">MD</acronym></th><th><acronym title="Personnes décédées">DCD</acronym></th><th><acronym title="Personnes blessées">PB</acronym></th></tr>
+	</thead>
+	<tbody class="clickable-rows">
+	{% for event in events %}
+	<tr data-ident="{{ event.ident }}">
+		<td class="strong">{{ event.verbose_ident }}</td>
+		<td>{{ event.verbose_status }}</td>
+		<td>{{ event.location }}</td>
+		<td>{{ event.updated_on|default_if_none:"" }}</td>
+		<td>{{ event.flooded_area }}</td>
+		<td>{{ event.homes_destroyed }}</td>
+		<td>{{ event.dead }}</td>
+		<td>{{ event.wounded }}</td>
+	</tr>
+	{% endfor %}
+	</tbody>
+</table>
+{% endblock %}
+
+{% block onJQready %}
+$('#floodevents_list tr').on('click', function (e) {
+	window.location = '{% url 'event' 'aaa' %}'.replace('aaa', $(this).data('ident'));
+});
+{% endblock %}

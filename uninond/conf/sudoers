@@ -1,0 +1,1 @@
+uninond ALL= NOPASSWD: /sbin/shutdown, /bin/mount, /bin/umount

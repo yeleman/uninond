@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% load uninond %}
+
+{% block content %}
+
+<h2>{{ event.verbose_ident }}: Inondation <em>{{ event.verbose_status|lower}}</em> à {{ event.location }}</h2>
+
+<dl class="dl-horizontal">
+	<dt>Créée le</dt>
+	<dd>{{ event.created_on }}</dd>
+	<dt>Par</dt>
+	<dd>{{ event.created_by }}</dd>
+	<dt>Localité</dt>
+	<dd>{{ event.location.display_name }}</dd>
+
+	{% if event.expired %}
+	<dt>Expiré le (absence de mise à jour)</dt>
+	<dd>{{ event.expired_on }}</dd>
+	{% endif %}
+
+	{% if event.cancelled %}
+	<dt>Annulée le</dt>
+	<dd>{{ event.cancelled_on }}</dd>
+	<dt>Par</dt>
+	<dd>{{ event.cancelled_by }}</dd>
+	{% endif %}
+
+	{% if event.restrained %}
+	<dt>Déclarée contenable le</dt>
+	<dd>{{ event.restrained_on }}</dd>
+	<dt>Par</dt>
+	<dd>{{ event.restrained_by }}</dd>
+	{% endif %}
+
+	{% if event.restrained %}
+	<dt>Déclarée contenable le</dt>
+	<dd>{{ event.restrained_on }}</dd>
+	<dt>Par</dt>
+	<dd>{{ event.restrained_by }}</dd>
+	{% endif %}
+	
+	<h3>Données de l'alerte</h3>
+	<dt>Surface submergée</dt>
+	<dd>{{ event.initial_flooded_area }}/3</dd>
+	<dt>Maisons détruites</dt>
+	<dd>{{ event.initial_homes_destroyed }}</dd>
+	<dt>Morts</dt>
+	<dd>{{ event.initial_dead }}</dd>
+	<dt>Blessés</dt>
+	<dd>{{ event.initial_wounded }}</dd>
+
+
+	{% if event.verified %}
+	<h3>Données DRPC</h3>
+	<dt>Surface submergée</dt>
+	<dd>{{ event.flooded_area }}/3</dd>
+	<dt>Maisons détruites</dt>
+	<dd>{{ event.homes_destroyed }}</dd>
+	<dt>Morts</dt>
+	<dd>{{ event.dead }}</dd>
+	<dt>Blessés</dt>
+	<dd>{{ event.wounded }}</dd>
+	{% endif %}
+</dl>
+
+<table id="sms_list" class="table table-striped table-bordered table-hover">
+	<thead>
+		<caption>Tous les SMS envoyés et reçus concernant cette inondation</caption>
+		<tr><th>Type</th><th>Numéro</th><th>Date</th><th>Texte</th></tr>
+	</thead>
+	<tbody class="clickable-rows">
+	{% for sms in event.messages.all %}
+	<tr data-id="{{ sms.id }}">
+		<td>{{ sms.verbose_direction }}</td>
+		<td>{{ sms.identity|phone }}</td>
+		<td>{{ sms.created_on }}</td>
+		<td>{{ sms.text }}</td>
+	</tr>
+	{% endfor %}
+	</tbody>
+</table>
+
+{% endblock %}
+
+{% block onJQready %}
+$('#floodevents_list tr').on('click', function (e) {
+	window.location = '{% url 'event' 'aaa' %}'.replace('aaa', $(this).data('ident'));
+});
+{% endblock %}

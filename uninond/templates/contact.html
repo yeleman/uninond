@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load uninond %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<h2>{{ contact }}</h2>
+
+<dl class="dl-horizontal">
+	<dt>Numéro de téléphone</dt>
+	<dd>{{ contact.identity|phone }}</dd>
+	<dt>Nom</dt>
+	<dd>{{ contact.name|default_if_none:"-" }}</dd>
+	<dt>Localité</dt>
+	<dd>{{ contact.location.display_name|default_if_none:"-" }} {% if contact.is_main %}<span class="glyphicon glyphicon-asterisk" style="color: orange;" title="Contact principal de cette localité" />{% endif %}</dd>
+	<dt>Rôle</dt>
+	<dd>{{ contact.role|default_if_none:"-"|default:"-" }}</dd>
+	<dt>Fonction</dt>
+	<dd>{{ contact.position|default_if_none:"-"|default:"-" }}</dd>
+	<dt>Actif ?</dt>
+	<dd>{% if contact.active %}
+	<span class="label label-success">Oui <span class="glyphicon glyphicon-ok"></span></span> <a href="{% url 'contact_disable' contact.identity %}" class="btn btn-warning btn-xs">désactiver</a>
+	{% else %}
+	<span class="label label-default">Non <span class="glyphicon glyphicon-remove"></span></span> <a href="{% url 'contact_enable' contact.identity %}" class="btn btn-warning btn-xs">activer</a>
+	{% endif %}</dd>
+</dl>
+
+<button class="btn btn-default start-editing"><span class="glyphicon glyphicon-pencil"></span> modifier les informations</button>
+<div class="edition-form" style="display: none;">
+<h3>Modification</h3>
+<form method="post" class="bootstrap3">{% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit" class="btn btn-primary" >Enregistrer les modifications</button>
+</form>
+</div>
+
+<hr />
+
+<table id="sms_list" class="table table-striped table-bordered table-hover">
+	<thead>
+		<caption>Tous les SMS échangée avec cette personne</caption>
+		<tr><th>Type</th><th>Date</th><th>Texte</th></tr>
+	</thead>
+	<tbody class="clickable-rows">
+	{% for sms in contact.messages.all %}
+	<tr data-id="{{ sms.id }}">
+		<td>{{ sms.verbose_direction }}</td>
+		<td>{{ sms.created_on }}</td>
+		<td>{{ sms.text }}</td>
+	</tr>
+	{% empty %}
+	<tr><td colspan="3">Aucun SMS échangé avec cette personne.</td>
+	{% endfor %}
+	</tbody>
+</table>
+
+{% endblock %}
+
+{% block onJQready %}
+$('.start-editing').on('click', function (e) { $('.edition-form').toggle(); });
+
+$('#floodevents_list tr').on('click', function (e) {
+	window.location = '{% url 'event' 'aaa' %}'.replace('aaa', $(this).data('ident'));
+});
+{% endblock %}

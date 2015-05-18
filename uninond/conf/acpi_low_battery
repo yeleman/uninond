@@ -1,0 +1,2 @@
+event=battery*
+action=/home/uninond/uninond/scripts/low_battery_shutdown.sh

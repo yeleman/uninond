@@ -1,0 +1,173 @@
+{% load staticfiles %}<!doctype html>
+<!--[if lt IE 7 ]> <html class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html> <!--<![endif]-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}UNINOND{% endblock %}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="{% static "img/favicon.ico" %}" />
+    <meta http-equiv="Content-Language" content="fr-fr" />
+    <meta name="ROBOTS" content="ALL" />
+    <meta name="Copyright" content="UNICEF, YELEMAN" />
+    <meta name="keywords" content="inondations, alerte, mopti, DRPC, UNICEF, YELEMAN" />
+    <meta name="description" content="Interface de gestion des alertes inondations pour la région de Mopti" />
+    <link rel="stylesheet" href="{% static "bootstrap-3.3.4-dist/css/bootstrap.min.css" %}">
+    <style type="text/css">
+    body { padding-top: 70px; }
+	.clickable-rows tr { cursor: pointer; }
+	.strong { font-weight: bold; }
+	.dl-horizontal dt { width: auto; }
+	td.disabled { text-decoration:line-through; }
+	.close-notif-button { float: right; cursor: pointer; }
+
+	.battery-bar {
+		margin: .5em;
+		height: 26px;
+		font-size: 18px;
+		vertical-align: middle;
+		/*font-weight: bold;*/
+	}
+	.battery-bar img { height: 26px; }
+
+	.blink {
+      animation: blink 1s steps(1, start) infinite;
+      -webkit-animation: blink 1s steps(1, start) infinite;
+    }
+    @keyframes blink {
+     	0% { color: transparent; }
+    	50% { color: red; }
+    	100% { color: transparent; }
+    }
+    /*@-webkit-keyframes blink {
+    	0% { color: red; }
+    	100% { color: white; }
+    }*/
+
+    .navbar-default .navbar-nav a.incomingflood {
+    	background-color: red;
+    	font-weight: bold;
+    }
+	</style>
+    <script type="text/javascript">
+    hc_graphs = [];
+    var alertFallback = false; if (typeof console === "undefined" || typeof console.log === "undefined") { console = {}; if (alertFallback) { console.log = function(msg) { alert(msg);}; } else { console.log = function() {}; } }
+    </script>
+</head>
+<body class="{% block page_slug %}{{ page_slug }}{% endblock %}">
+    
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{% url 'dashboard' %}">INONDATIONS DRPC</a>
+          <!-- <span class="navbar-brand glyphicon glyphicon-alert incomingflood blink"></span> -->
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li{% if page == 'dashboard' %} class="active"{% endif %}>
+            <a href="{% url 'dashboard' %}">Tableau de bord</a></li>
+            <li{% if page == 'sms' %} class="active"{% endif %}><a href="{% url 'smses' %}">Tous les SMS</a></li>
+            <li{% if page == 'addressbook' %} class="active"{% endif %}><a href="{% url 'addressbook' %}">Annuaire</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+        	<li class="battery-bar"></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+	    <section class="content">
+	        {% if messages %}
+	        <div id="notifications">
+	        {% for message in messages %}
+	            <p class="alert alert-{% if message.tags == 'error'%}danger{% else %}{{ message.tags }}{% endif %}">{{ message|linebreaksbr }}<i class="glyphicon glyphicon-remove close-notif-button"></i></p>
+	        {% endfor %}
+	        </div>
+	        {% endif %}
+	        <div class="content-container">
+	            {% block content %}
+	            <h1>Tableau de bord général</h1>
+	            <p>Utilisez le menu en haut à gauche pour naviguer</p>
+	            {% endblock %}
+	        </div>
+	    </section>
+	</div>
+
+    <footer>
+        
+    </footer>
+</body>
+<script src="{% static "jquery-1.11.2.min.js" %}"></script>
+<!-- <script src="{% static "js/uninond.js" %}?date=20150206"></script> -->
+{% block assets %}{% endblock %}
+<script>
+var page_time = Date.now() / 1000;
+var acpi_interval;
+var alert_interval;
+var static_url_tmpl = "{% static "FILE" %}";
+function updateACPI() {
+	var icon_map = {
+		"Discharging": "battery-discharging.svg",
+		"Charging": "battery-charging.svg",
+		"Full": "battery-full.svg",
+	};
+	var error_icon = "battery-warning.svg";
+	var icon, icon_file, text;
+	
+	$.get('/api/acpi_status').success(function(data) {
+		if (data === null) {
+			icon_file = error_icon;
+			text = "Batterie absente !";
+		} else {
+			if (percent <= 10) {
+				icon_file = error_icon;
+			} else {
+				icon_file = icon_map[data.status];
+			}
+			var remaining_txt = data.remaining[0] + "h" + data.remaining[1];
+			text = data.percent + "% (" + remaining_txt + ")";
+		}
+		icon = '<img height="30" src="' + static_url_tmpl.replace('FILE', icon_file) + '" />';
+		$('.battery-bar').html(text + icon);
+	});
+}
+
+function updateFloodAlert() {
+	if (alert_interval === null) {
+		return;
+	}
+	var alert_elem = $('<span class="navbar-brand glyphicon glyphicon-alert incomingflood blink"></span>');
+	$.get('/api/new_alert', {timestamp: page_time}).success(function(data) {
+		if (data.nb_new_alerts > 0) {
+			$('.navbar-header').append(alert_elem);
+			clearInterval(alert_interval);
+			alert_interval = null;
+		}
+	});
+}
+function main() {
+	$(".close-notif-button").on('click', function (e) {
+        notif = $(this).parent();
+        notif.remove();
+        e.preventDefault();
+    });
+}
+$(document).ready(function(){
+main();
+acpi_interval = setInterval(updateACPI, 5000);
+updateACPI();
+alert_interval = setInterval(updateFloodAlert, 30000);
+updateFloodAlert();
+{% block onJQready %}{% endblock %}
+});</script>
+</html>

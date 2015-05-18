@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load uninond %}
+
+{% block content %}
+
+<table id="sms_list" class="table table-striped table-bordered table-hover">
+	<thead>
+		<caption>Tous les SMS envoyés et reçus par/sur le serveur</caption>
+		<tr><th>Type</th><th>Numéro</th><th>Date</th><th>Texte</th></tr>
+	</thead>
+	<tbody>
+	{% for sms in smses %}
+	<tr data-id="{{ sms.id }}">
+		<td>{{ sms.verbose_direction }}</td>
+		<td>{{ sms.identity|phone }}</td>
+		<td>{{ sms.created_on }}</td>
+		<td>{{ sms.text }}</td>
+	</tr>
+	{% endfor %}
+	</tbody>
+</table>
+{% endblock %}
+
+{% block onJQready %}
+$('#floodevents_list tr').on('click', function (e) {
+	window.location = '{% url 'event' 'aaa' %}'.replace('aaa', $(this).data('ident'));
+});
+{% endblock %}

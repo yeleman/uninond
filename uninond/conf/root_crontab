@@ -1,0 +1,6 @@
+# m h dom mon dow user	command
+
+#*/3   *   *   *   *  root  /home/uninond/uninind/scripts/low_battery_shutdown.sh
+
+@reboot /home/uninond/uninond/scripts/startWlanAP.sh
+

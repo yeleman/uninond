@@ -1,0 +1,7 @@
+
+
+ACTION=="add", SUBSYSTEM=="usb", RUN+="/home/uninond/uninond/scripts/on_usb_insert.sh"
+
+KERNEL=="sd*[!0-9]|sr*", ENV{ID_SERIAL}!="?*", SUBSYSTEMS=="usb", RUN+="/home/uninond/uninond/scripts/on_usb_storage.sh"
+
+ACTION=="remove", SUBSYSTEM=="usb", RUN+="/home/uninond/uninond/scripts/on_usb_eject.sh"

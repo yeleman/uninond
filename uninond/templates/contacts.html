@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load uninond %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<button class="btn btn-default start-editing"><span class="glyphicon glyphicon-plus"></span> Ajouter un contact</button>
+<div class="edition-form" style="{% if not open_add_form %}display: none;{% endif %}">
+<h3>Création de contact</h3>
+<form method="post" class="bootstrap3">{% csrf_token %}
+    {{ add_form|crispy }}
+    <button type="submit" class="btn btn-primary">Enregistrer le contact</button>
+</form>
+</div>
+
+<hr />
+
+<form method="post" class="form-inline bootstrap3">{% csrf_token %}
+    <label for="query">Rechercher un contact</label>
+    <input type="text" class="form-control" name="query" maxlength="100" placeholder="Adama Coulibaly">
+  <button type="submit" class="btn btn-default">Filtrer</button>
+</form>
+
+<table id="contacts_list" class="table table-striped table-bordered table-hover">
+	<thead>
+		<caption>Toutes les personnes inscrites dans le système</caption>
+		<tr><th>Role</th><th>Nom</th><th>Fonction</th><th>Numéro</th></tr>
+	</thead>
+	<tbody class="clickable-rows">
+	{% for contact in contacts %}
+	<tr data-identity="{{ contact.identity }}">
+		<td>{{ contact.display_role }}</td>
+		<td>{{ contact.name }}</td>
+		<td>{{ contact.position|default_if_none:"-" }}</td>
+		<td {% if not contact.active %}class="disabled"{% endif %}>{{ contact.identity|phone }}</td>
+	</tr>
+	{% endfor %}
+	</tbody>
+</table>
+{% endblock %}
+
+{% block onJQready %}
+$('#contacts_list tr').on('click', function (e) {
+	window.location = '{% url 'contact_details' 0 %}'.replace('0', $(this).data('identity'));
+});
+
+$('.start-editing').on('click', function (e) { $('.edition-form').toggle(); });
+
+{% endblock %}

@@ -1,0 +1,640 @@
+<?xml version="1.0" encoding="utf-8"?>
+<django-objects version="1.0">
+    <object pk="13" model="uninond.location">
+        <field type="SlugField" name="slug">mopti</field>
+        <field type="CharField" name="name">Mopti</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel"><None></None></field>
+        <field type="SlugField" name="location_type">region</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="14" model="uninond.location">
+        <field type="SlugField" name="slug">cercle_bankass</field>
+        <field type="CharField" name="name">BANKASS</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">13</field>
+        <field type="SlugField" name="location_type">cercle</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="15" model="uninond.location">
+        <field type="SlugField" name="slug">commune_baye</field>
+        <field type="CharField" name="name">BAYE</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">14</field>
+        <field type="SlugField" name="location_type">commune</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="16" model="uninond.location">
+        <field type="SlugField" name="slug">CO</field>
+        <field type="CharField" name="name">BAYE</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">15</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="17" model="uninond.location">
+        <field type="SlugField" name="slug">commune_diallassagou</field>
+        <field type="CharField" name="name">DIALLASSAGOU</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">14</field>
+        <field type="SlugField" name="location_type">commune</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="18" model="uninond.location">
+        <field type="SlugField" name="slug">MP</field>
+        <field type="CharField" name="name">DIALLASSAGOU</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">17</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="19" model="uninond.location">
+        <field type="SlugField" name="slug">commune_ouonkoro</field>
+        <field type="CharField" name="name">OUONKORO</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">14</field>
+        <field type="SlugField" name="location_type">commune</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="20" model="uninond.location">
+        <field type="SlugField" name="slug">WZ</field>
+        <field type="CharField" name="name">OUONKORO</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">19</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="21" model="uninond.location">
+        <field type="SlugField" name="slug">cercle_djenne</field>
+        <field type="CharField" name="name">DJENNE</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">13</field>
+        <field type="SlugField" name="location_type">cercle</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="22" model="uninond.location">
+        <field type="SlugField" name="slug">commune_dandougou-fakala</field>
+        <field type="CharField" name="name">DANDOUGOU FAKALA</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">21</field>
+        <field type="SlugField" name="location_type">commune</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="23" model="uninond.location">
+        <field type="SlugField" name="slug">MO</field>
+        <field type="CharField" name="name">KONIO MARKA</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">22</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="24" model="uninond.location">
+        <field type="SlugField" name="slug">commune_derary</field>
+        <field type="CharField" name="name">DERARY</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">21</field>
+        <field type="SlugField" name="location_type">commune</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="25" model="uninond.location">
+        <field type="SlugField" name="slug">FQ</field>
+        <field type="CharField" name="name">KOINA</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">24</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="26" model="uninond.location">
+        <field type="SlugField" name="slug">commune_fakala</field>
+        <field type="CharField" name="name">FAKALA</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">21</field>
+        <field type="SlugField" name="location_type">commune</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="27" model="uninond.location">
+        <field type="SlugField" name="slug">FV</field>
+        <field type="CharField" name="name">TOMBONA</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">26</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="28" model="uninond.location">
+        <field type="SlugField" name="slug">commune_femaye</field>
+        <field type="CharField" name="name">FEMAYE</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">21</field>
+        <field type="SlugField" name="location_type">commune</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="29" model="uninond.location">
+        <field type="SlugField" name="slug">BI</field>
+        <field type="CharField" name="name">TAGA BAINA</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">28</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="30" model="uninond.location">
+        <field type="SlugField" name="slug">OZ</field>
+        <field type="CharField" name="name">TAGA MARKA</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">28</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="31" model="uninond.location">
+        <field type="SlugField" name="slug">BF</field>
+        <field type="CharField" name="name">TAGA NOMOUNA</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">28</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="32" model="uninond.location">
+        <field type="SlugField" name="slug">EY</field>
+        <field type="CharField" name="name">TAGA TELLELA</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">28</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="33" model="uninond.location">
+        <field type="SlugField" name="slug">commune_kewa</field>
+        <field type="CharField" name="name">KEWA</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">21</field>
+        <field type="SlugField" name="location_type">commune</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="34" model="uninond.location">
+        <field type="SlugField" name="slug">RV</field>
+        <field type="CharField" name="name">KOUAKOUROU</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">33</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="35" model="uninond.location">
+        <field type="SlugField" name="slug">commune_madiama</field>
+        <field type="CharField" name="name">MADIAMA</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">21</field>
+        <field type="SlugField" name="location_type">commune</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="36" model="uninond.location">
+        <field type="SlugField" name="slug">HX</field>
+        <field type="CharField" name="name">MADIAMA</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">35</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="37" model="uninond.location">
+        <field type="SlugField" name="slug">commune_togue-mourari</field>
+        <field type="CharField" name="name">TOGUE MOURARI</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">21</field>
+        <field type="SlugField" name="location_type">commune</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="38" model="uninond.location">
+        <field type="SlugField" name="slug">HR</field>
+        <field type="CharField" name="name">MOURRAH</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">37</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="39" model="uninond.location">
+        <field type="SlugField" name="slug">cercle_douentza</field>
+        <field type="CharField" name="name">DOUENTZA</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">13</field>
+        <field type="SlugField" name="location_type">cercle</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="40" model="uninond.location">
+        <field type="SlugField" name="slug">commune_dallah</field>
+        <field type="CharField" name="name">DALLAH</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">39</field>
+        <field type="SlugField" name="location_type">commune</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="41" model="uninond.location">
+        <field type="SlugField" name="slug">FP</field>
+        <field type="CharField" name="name">DALLAH</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">40</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="42" model="uninond.location">
+        <field type="SlugField" name="slug">commune_dangol-bore</field>
+        <field type="CharField" name="name">DANGOL-BORE</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">39</field>
+        <field type="SlugField" name="location_type">commune</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="43" model="uninond.location">
+        <field type="SlugField" name="slug">HQ</field>
+        <field type="CharField" name="name">BORE</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">42</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="44" model="uninond.location">
+        <field type="SlugField" name="slug">CK</field>
+        <field type="CharField" name="name">BORE MAURES</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">42</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="45" model="uninond.location">
+        <field type="SlugField" name="slug">commune_djaptodji</field>
+        <field type="CharField" name="name">DJAPTODJI</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">39</field>
+        <field type="SlugField" name="location_type">commune</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="46" model="uninond.location">
+        <field type="SlugField" name="slug">TX</field>
+        <field type="CharField" name="name">N'GOUMA</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">45</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="47" model="uninond.location">
+        <field type="SlugField" name="slug">commune_gandamia</field>
+        <field type="CharField" name="name">GANDAMIA</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">39</field>
+        <field type="SlugField" name="location_type">commune</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="48" model="uninond.location">
+        <field type="SlugField" name="slug">CE</field>
+        <field type="CharField" name="name">KIKARA</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">47</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="49" model="uninond.location">
+        <field type="SlugField" name="slug">cercle_koro</field>
+        <field type="CharField" name="name">KORO</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">13</field>
+        <field type="SlugField" name="location_type">cercle</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="50" model="uninond.location">
+        <field type="SlugField" name="slug">commune_dinangourou</field>
+        <field type="CharField" name="name">DINANGOUROU</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">49</field>
+        <field type="SlugField" name="location_type">commune</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="51" model="uninond.location">
+        <field type="SlugField" name="slug">GP</field>
+        <field type="CharField" name="name">DINANGOUROU</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">50</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="52" model="uninond.location">
+        <field type="SlugField" name="slug">commune_dioungani</field>
+        <field type="CharField" name="name">DIOUNGANI</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">49</field>
+        <field type="SlugField" name="location_type">commune</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="53" model="uninond.location">
+        <field type="SlugField" name="slug">VY</field>
+        <field type="CharField" name="name">DIOUNGANI DOGON</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">52</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="54" model="uninond.location">
+        <field type="SlugField" name="slug">MR</field>
+        <field type="CharField" name="name">DIOUNGANI PEULH</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">52</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="55" model="uninond.location">
+        <field type="SlugField" name="slug">commune_dougoutene-i</field>
+        <field type="CharField" name="name">DOUGOUTENE I</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">49</field>
+        <field type="SlugField" name="location_type">commune</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="56" model="uninond.location">
+        <field type="SlugField" name="slug">EX</field>
+        <field type="CharField" name="name">TOROLI</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">55</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="57" model="uninond.location">
+        <field type="SlugField" name="slug">commune_madougou</field>
+        <field type="CharField" name="name">MADOUGOU</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">49</field>
+        <field type="SlugField" name="location_type">commune</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="58" model="uninond.location">
+        <field type="SlugField" name="slug">BO</field>
+        <field type="CharField" name="name">MADOUGOU</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">57</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="59" model="uninond.location">
+        <field type="SlugField" name="slug">GO</field>
+        <field type="CharField" name="name">MADOUGOU DOGON</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">57</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="60" model="uninond.location">
+        <field type="SlugField" name="slug">cercle_mopti</field>
+        <field type="CharField" name="name">MOPTI</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">13</field>
+        <field type="SlugField" name="location_type">cercle</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="61" model="uninond.location">
+        <field type="SlugField" name="slug">commune_bassirou</field>
+        <field type="CharField" name="name">BASSIROU</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">60</field>
+        <field type="SlugField" name="location_type">commune</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="62" model="uninond.location">
+        <field type="SlugField" name="slug">KU</field>
+        <field type="CharField" name="name">MOUSSAWEL</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">61</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="63" model="uninond.location">
+        <field type="SlugField" name="slug">commune_borondougou</field>
+        <field type="CharField" name="name">BORONDOUGOU</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">60</field>
+        <field type="SlugField" name="location_type">commune</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="64" model="uninond.location">
+        <field type="SlugField" name="slug">KL</field>
+        <field type="CharField" name="name">DAMBACOUROU</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">63</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="65" model="uninond.location">
+        <field type="SlugField" name="slug">commune_dialloube</field>
+        <field type="CharField" name="name">DIALLOUBE</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">60</field>
+        <field type="SlugField" name="location_type">commune</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="66" model="uninond.location">
+        <field type="SlugField" name="slug">VW</field>
+        <field type="CharField" name="name">KANIO</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">65</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="67" model="uninond.location">
+        <field type="SlugField" name="slug">commune_konna</field>
+        <field type="CharField" name="name">KONNA</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">60</field>
+        <field type="SlugField" name="location_type">commune</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="68" model="uninond.location">
+        <field type="SlugField" name="slug">UY</field>
+        <field type="CharField" name="name">KONTZA BOZO</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">67</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="69" model="uninond.location">
+        <field type="SlugField" name="slug">SX</field>
+        <field type="CharField" name="name">KONTZA PEULH</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">67</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="70" model="uninond.location">
+        <field type="SlugField" name="slug">KV</field>
+        <field type="CharField" name="name">KOTAKA</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">67</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="71" model="uninond.location">
+        <field type="SlugField" name="slug">commune_ouro-modi</field>
+        <field type="CharField" name="name">OURO MODI</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">60</field>
+        <field type="SlugField" name="location_type">commune</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="72" model="uninond.location">
+        <field type="SlugField" name="slug">CW</field>
+        <field type="CharField" name="name">OURO MODI</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">71</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="73" model="uninond.location">
+        <field type="SlugField" name="slug">commune_sio</field>
+        <field type="CharField" name="name">SIO</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">60</field>
+        <field type="SlugField" name="location_type">commune</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="74" model="uninond.location">
+        <field type="SlugField" name="slug">OW</field>
+        <field type="CharField" name="name">KARAMANI</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">73</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="75" model="uninond.location">
+        <field type="SlugField" name="slug">RZ</field>
+        <field type="CharField" name="name">KOLONI</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">73</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="76" model="uninond.location">
+        <field type="SlugField" name="slug">BJ</field>
+        <field type="CharField" name="name">NEIMA</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">73</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="77" model="uninond.location">
+        <field type="SlugField" name="slug">NZ</field>
+        <field type="CharField" name="name">PERIMPE</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">73</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="78" model="uninond.location">
+        <field type="SlugField" name="slug">DW</field>
+        <field type="CharField" name="name">SOMADOUGOU</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">73</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="79" model="uninond.location">
+        <field type="SlugField" name="slug">DI</field>
+        <field type="CharField" name="name">SOUFOUROULAYE</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">73</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="80" model="uninond.location">
+        <field type="SlugField" name="slug">EH</field>
+        <field type="CharField" name="name">YOURE</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">73</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="81" model="uninond.location">
+        <field type="SlugField" name="slug">commune_socoura</field>
+        <field type="CharField" name="name">SOCOURA</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">60</field>
+        <field type="SlugField" name="location_type">commune</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="82" model="uninond.location">
+        <field type="SlugField" name="slug">JK</field>
+        <field type="CharField" name="name">BARBE</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">81</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="83" model="uninond.location">
+        <field type="SlugField" name="slug">KX</field>
+        <field type="CharField" name="name">DIONDIORI</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">81</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="84" model="uninond.location">
+        <field type="SlugField" name="slug">DV</field>
+        <field type="CharField" name="name">NANTAKA</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">81</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="85" model="uninond.location">
+        <field type="SlugField" name="slug">IM</field>
+        <field type="CharField" name="name">SOCOURA</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">81</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="86" model="uninond.location">
+        <field type="SlugField" name="slug">commune_soye</field>
+        <field type="CharField" name="name">SOYE</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">60</field>
+        <field type="SlugField" name="location_type">commune</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="87" model="uninond.location">
+        <field type="SlugField" name="slug">JX</field>
+        <field type="CharField" name="name">SOYE</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">86</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="88" model="uninond.location">
+        <field type="SlugField" name="slug">cercle_tenenkou</field>
+        <field type="CharField" name="name">TENENKOU</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">13</field>
+        <field type="SlugField" name="location_type">cercle</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="89" model="uninond.location">
+        <field type="SlugField" name="slug">commune_diafarabe</field>
+        <field type="CharField" name="name">DIAFARABE</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">88</field>
+        <field type="SlugField" name="location_type">commune</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="90" model="uninond.location">
+        <field type="SlugField" name="slug">GU</field>
+        <field type="CharField" name="name">DIAFARABE</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">89</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="91" model="uninond.location">
+        <field type="SlugField" name="slug">commune_diaka</field>
+        <field type="CharField" name="name">DIAKA</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">88</field>
+        <field type="SlugField" name="location_type">commune</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="92" model="uninond.location">
+        <field type="SlugField" name="slug">PQ</field>
+        <field type="CharField" name="name">DIA</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">91</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="93" model="uninond.location">
+        <field type="SlugField" name="slug">commune_ouro-guire</field>
+        <field type="CharField" name="name">OURO GUIRE</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">88</field>
+        <field type="SlugField" name="location_type">commune</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="94" model="uninond.location">
+        <field type="SlugField" name="slug">NX</field>
+        <field type="CharField" name="name">KOUBI</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">93</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="95" model="uninond.location">
+        <field type="SlugField" name="slug">commune_tenenkou</field>
+        <field type="CharField" name="name">TENENKOU</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">88</field>
+        <field type="SlugField" name="location_type">commune</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="96" model="uninond.location">
+        <field type="SlugField" name="slug">QV</field>
+        <field type="CharField" name="name">TENENKOU</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">95</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="97" model="uninond.location">
+        <field type="SlugField" name="slug">cercle_youwarou</field>
+        <field type="CharField" name="name">YOUWAROU</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">13</field>
+        <field type="SlugField" name="location_type">cercle</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="98" model="uninond.location">
+        <field type="SlugField" name="slug">commune_bimbere-tama</field>
+        <field type="CharField" name="name">BIMBERE TAMA</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">97</field>
+        <field type="SlugField" name="location_type">commune</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="99" model="uninond.location">
+        <field type="SlugField" name="slug">IS</field>
+        <field type="CharField" name="name">DOGO</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">98</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="100" model="uninond.location">
+        <field type="SlugField" name="slug">commune_youwarou</field>
+        <field type="CharField" name="name">YOUWAROU</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">97</field>
+        <field type="SlugField" name="location_type">commune</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="101" model="uninond.location">
+        <field type="SlugField" name="slug">MS</field>
+        <field type="CharField" name="name">YOUWAROU</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">100</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="102" model="uninond.location">
+        <field type="SlugField" name="slug">CS</field>
+        <field type="CharField" name="name">YOUWAROU HOMBOLORE</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">100</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+    <object pk="103" model="uninond.location">
+        <field type="SlugField" name="slug">NT</field>
+        <field type="CharField" name="name">YOUWAROU-OURO</field>
+        <field to="uninond.location" name="parent" rel="ManyToOneRel">100</field>
+        <field type="SlugField" name="location_type">vfq</field>
+        <field to="uninond.contact" name="main_contact" rel="ManyToOneRel"><None></None></field>
+    </object>
+</django-objects>
