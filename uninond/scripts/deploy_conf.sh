@@ -27,11 +27,12 @@ cp -v ../conf/fluxbox_overlay ${HOMED}/.fluxbox/overlay
 cp -v ../conf/fluxbox_apps ${HOMED}/.fluxbox/apps
 cp -v ../conf/fluxbox_init ${HOMED}/.fluxbox/init
 cp -v ../conf/fluxbox_menu ${HOMED}/.fluxbox/menu
-chmod 664 ${HOMED}/.fluxbox/{apps,overlay,menu,init}
+cp -v ../conf/fluxbox_lastwallpaper ${HOMED}/.fluxbox/lastwallpaper
+chmod 664 ${HOMED}/.fluxbox/{apps,overlay,menu,init,lastwallpaper}
 cp -v ../conf/fluxbox_startup ${HOMED}/.fluxbox/startup
 chmod 744 ${HOMED}/.fluxbox/startup
-chown -r uninond:uninond /home/uninond/.fluxbox
-chown uninond:uninond /home/uninond/{.xinitrc,.dehbg}
+chown -R uninond:uninond /home/uninond/.fluxbox
+chown uninond:uninond /home/uninond/{.xinitrc,.fehbg}
 
 # root crontab
 cat ../conf/root_crontab >> /etc/crontab
@@ -43,7 +44,7 @@ chmod 600 /var/spool/cron/crontabs/uninond
 
 # sudoers for shutdown and mount
 cat ../conf/sudoers >> /etc/sudoers
-sudo  # check if sudo is not broken
+sudo -h # check if sudo is not broken
 
 # tty1 for autologin
 cp -v ../conf/tty1.conf /etc/init/tty1.conf

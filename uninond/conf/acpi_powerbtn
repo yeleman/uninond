@@ -1,2 +1,2 @@
 event=button[ /]power
-action=/home/uninond/uninond/uninond/scripts/acpi_powerbtn.sh
+action=/home/uninond/uninond/uninond/scripts/powerbtn.sh
