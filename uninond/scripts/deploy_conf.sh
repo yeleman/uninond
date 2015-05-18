@@ -34,17 +34,10 @@ chmod 744 ${HOMED}/.fluxbox/startup
 chown -R uninond:uninond /home/uninond/.fluxbox
 chown uninond:uninond /home/uninond/{.xinitrc,.fehbg}
 
-# root crontab
-cat ../conf/root_crontab >> /etc/crontab
-
 # uninond crontab
 cp -v ../conf/uninond_crontab /var/spool/cron/crontabs/uninond
 chown uninond:crontab /var/spool/cron/crontabs/uninond
 chmod 600 /var/spool/cron/crontabs/uninond
-
-# sudoers for shutdown and mount
-cat ../conf/sudoers >> /etc/sudoers
-sudo -h # check if sudo is not broken
 
 # tty1 for autologin
 cp -v ../conf/tty1.conf /etc/init/tty1.conf
@@ -58,3 +51,9 @@ chmod 644 /etc/udev/rules.d/10-usbmount.rules
 cp -v ../conf/systemd_logind.conf /etc/systemd/logind.conf
 chmod 644 /etc/systemd/logind.conf
 
+# sudoers for shutdown and mount
+cat ../conf/sudoers >> /etc/sudoers
+sudo -h # check if sudo is not broken
+
+# root crontab
+cat ../conf/root_crontab >> /etc/crontab
