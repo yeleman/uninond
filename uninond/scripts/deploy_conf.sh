@@ -51,9 +51,9 @@ chmod 644 /etc/udev/rules.d/10-usbmount.rules
 cp -v ../conf/systemd_logind.conf /etc/systemd/logind.conf
 chmod 644 /etc/systemd/logind.conf
 
+# root crontab
+cp -v ../conf/root_crontab /etc/crontab
+
 # sudoers for shutdown and mount
 cat ../conf/sudoers >> /etc/sudoers
 sudo -h # check if sudo is not broken
-
-# root crontab
-cat ../conf/root_crontab >> /etc/crontab
