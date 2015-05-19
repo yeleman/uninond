@@ -39,6 +39,11 @@ cp -v ../conf/uninond_crontab /var/spool/cron/crontabs/uninond
 chown uninond:crontab /var/spool/cron/crontabs/uninond
 chmod 600 /var/spool/cron/crontabs/uninond
 
+# root crontab
+cp -v ../conf/root_crontab /var/spool/cron/crontabs/root
+chown root:crontab /var/spool/cron/crontabs/root
+chmod 600 /var/spool/cron/crontabs/root
+
 # tty1 for autologin
 cp -v ../conf/tty1.conf /etc/init/tty1.conf
 chmod 644 /etc/init/tty1.conf
@@ -50,9 +55,6 @@ chmod 644 /etc/udev/rules.d/10-usbmount.rules
 # disable systemd handling of acpi power button
 cp -v ../conf/systemd_logind.conf /etc/systemd/logind.conf
 chmod 644 /etc/systemd/logind.conf
-
-# root crontab
-cp -v ../conf/root_crontab /etc/crontab
 
 # sudoers for shutdown and mount
 cat ../conf/sudoers >> /etc/sudoers

@@ -1,12 +1,18 @@
 #!/bin/bash
 
+if [ "$1" = "" ]; then
+	iface="wlan0"
+else
+	iface=$1
+fi
+
 # static ip for self
-ifconfig $1 up 10.0.0.1 netmask 255.255.255.0
+ifconfig ${iface} up 10.0.0.1 netmask 255.255.255.0
 sleep 2
 
 # start dhcpd
 if [ "$(ps -e | grep dhcpd)" == "" ]; then
-dhcpd $1 &
+dhcpd ${iface} &
 fi
 
 # forward packet (not needed here)
