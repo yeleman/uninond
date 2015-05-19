@@ -5,7 +5,7 @@
 
 # check for firefox process
 # launch firefox on first display
-pgrep -f firefox || firefox --display :0 
+pgrep -f firefox || LC_ALL=fr_FR.UTF-8 firefox --display :0 
 
 sleep 3
 

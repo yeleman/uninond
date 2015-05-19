@@ -15,6 +15,7 @@ Ubuntu 14.04.2 with:
 
 ## Configuration
 
+* Launch firefox once and configure homepage to http://localhost:8000
 * configure sound (unmute) via: `sudo alsamixer`
 * Deploy configuration (as root)
     `# /home/uninond/uninond/uninond/scripts/deploy_conf.sh`
