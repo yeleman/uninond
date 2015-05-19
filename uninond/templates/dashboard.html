@@ -20,6 +20,8 @@
 		<td>{{ event.dead }}</td>
 		<td>{{ event.wounded }}</td>
 	</tr>
+	{% empty %}
+	<tr><td colspan="8">Aucune inondation enregistrée pour le môment</td></tr>
 	{% endfor %}
 	</tbody>
 </table>

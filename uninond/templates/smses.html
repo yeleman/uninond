@@ -16,6 +16,8 @@
 		<td>{{ sms.created_on }}</td>
 		<td>{{ sms.text }}</td>
 	</tr>
+	{% empty %}
+	<tr><td colspan="4">Aucun SMS échangé pour le môment</td></tr>
 	{% endfor %}
 	</tbody>
 </table>
