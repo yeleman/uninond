@@ -63,8 +63,7 @@ class SMSReply(object):
         return text
 
     def send(self, text, level=INFO):
-        self.message.respond(self.body(text, level))
-        return True
+        return self.message.respond(self.body(text, level))
 
     def info(self, text):
         return self.send(text, self.INFO)

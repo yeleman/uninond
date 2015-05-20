@@ -71,7 +71,7 @@ class SMSMessage(models.Model):
         return self.message
 
     def respond(self, text):
-        SMSMessage.objects.create(
+        return SMSMessage.objects.create(
             direction=self.OUTGOING,
             identity=self.identity,
             event_on=timezone.now(),

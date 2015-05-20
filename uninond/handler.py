@@ -164,13 +164,15 @@ def create_event(message):
     if duplicate is not None:
         # mark message as part of that duplicate
         duplicate.add_message(message)
-        return reply.warning("L'inondation de {location} a déjà été signalée "
+        repl = reply.warning("L'inondation de {location} a déjà été signalée "
                              "le {at} par {by}. Merci de patienter ou de "
                              "rappeller la DRPC au {hotline}."
                              .format(location=location,
                                      at=datetime_repr(duplicate.created_on),
                                      by=duplicate.created_by,
                                      hotline=settings.HOTLINE_NUMBER))
+        duplicate.add_message(repl)
+        return repl
 
     # find or create contact
     contact = Contact.get_or_create(
@@ -224,12 +226,14 @@ def create_event(message):
     exec_cmd(os.path.join(settings.BASE_DIR, 'uninond',
                           'scripts', 'incoming_alert.sh'))
 
-    return reply.success("Votre alerte inondation pour {location} a bien "
+    repl = reply.success("Votre alerte inondation pour {location} a bien "
                          "été prise en compte. La DRPC est informée "
                          "ainsi que les autorités. Vous allez être rappellé. "
                          "En cas de besoin, appellez la DRPC au {hotline}."
                          .format(location=location.full_name,
                                  hotline=settings.HOTLINE_NUMBER))
+    event.add_message(repl)
+    return repl
 
 
 def event_confirmed(message):
@@ -268,18 +272,22 @@ def event_confirmed(message):
                            .format(arguments['event_ident']))
 
     if event.closed:
-        return reply.error("Cette inondation ({event}) est déjà cloturée "
+        repl = reply.error("Cette inondation ({event}) est déjà cloturée "
                            "({status} le {at})."
                            .format(event=event.verbose_ident,
                                    status=event.verbose_status,
                                    at=datetime_repr(event.closed_on)))
+        event.add_message(repl)
+        return repl
 
     # update data
     error_msg = check_metadata(arguments['flooded_area'],
                                arguments['homes_destroyed'],
                                arguments['dead'], arguments['wounded'])
     if error_msg:
-        return reply.error(error_msg)
+        repl = reply.error(error_msg)
+        event.add_message(repl)
+        return repl
 
     comment = arguments.get('comment', '').strip() or None
 
@@ -332,10 +340,12 @@ def event_confirmed(message):
                                         drpc=True, verbose=True)),
         text_all))
 
-    return reply.success("Merci. L'inondation {ident} a été confirmée. "
+    repl = reply.success("Merci. L'inondation {ident} a été confirmée. "
                          "Le gouvernorat et les autres acteurs ont "
                          "été prévenus."
                          .format(ident=event.verbose_ident))
+    event.add_message(repl)
+    return repl
 
 
 def event_restrained(message):
@@ -374,18 +384,22 @@ def event_restrained(message):
                            .format(arguments['event_ident']))
 
     if event.closed:
-        return reply.error("Cette inondation ({event}) est déjà cloturée "
+        repl = reply.error("Cette inondation ({event}) est déjà cloturée "
                            "({status} le {at})."
                            .format(event=event.verbose_ident,
                                    status=event.verbose_status,
                                    at=datetime_repr(event.closed_on)))
+        event.add_message(repl)
+        return repl
 
     # update data
     error_msg = check_metadata(arguments['flooded_area'],
                                arguments['homes_destroyed'],
                                arguments['dead'], arguments['wounded'])
     if error_msg:
-        return reply.error(error_msg)
+        repl = reply.error(error_msg)
+        event.add_message(repl)
+        return repl
 
     now = timezone.now()
     # find or create contact
@@ -426,10 +440,12 @@ def event_restrained(message):
     event.add_message(fake_message(
         ", ".join(Contact.dispatch_list(drpc=True, verbose=True)), text_all))
 
-    return reply.success("Merci. L'inondation {ident} a été marquée comme "
+    repl = reply.success("Merci. L'inondation {ident} a été marquée comme "
                          "contenue. Tous les acteurs (sauf le gouvernorat) "
                          "ont été prévenus."
                          .format(ident=event.verbose_ident))
+    event.add_message(repl)
+    return repl
 
 
 def event_cancelled(message):
@@ -464,11 +480,13 @@ def event_cancelled(message):
                            .format(arguments['event_ident']))
 
     if event.closed:
-        return reply.error("Cette inondation ({event}) est déjà cloturée "
+        repl = reply.error("Cette inondation ({event}) est déjà cloturée "
                            "({status} le {at})."
                            .format(event=event.verbose_ident,
                                    status=event.verbose_status.lower(),
                                    at=datetime_repr(event.closed_on)))
+        event.add_message(repl)
+        return repl
 
     now = timezone.now()
 
@@ -502,7 +520,9 @@ def event_cancelled(message):
     event.add_message(fake_message(
         ", ".join(Contact.dispatch_list(drpc=True, verbose=True)), text_all))
 
-    return reply.success("Merci. L'inondation {ident} a été annulée. "
+    repl = reply.success("Merci. L'inondation {ident} a été annulée. "
                          "Tous les acteurs (sauf le gouvernorat) "
                          "ont été prévenus."
                          .format(ident=event.verbose_ident))
+    event.add_message(repl)
+    return repl
