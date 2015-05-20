@@ -21,11 +21,17 @@ from uninond.tools import normalized_phonenumber
 logger = logging.getLogger(__name__)
 
 
+def display_name(location):
+    return "{} {}".format(
+        "-".join(["" for _ in range(location.level)]),
+        location.display_name)
+
+
 class ContactUpdateForm(forms.ModelForm):
 
     class Meta:
         model = Contact
-        exclude = ('identity', 'location', 'active')
+        exclude = ('identity', 'active')
 
     is_main_contact = forms.BooleanField(
         required=False,
@@ -35,6 +41,11 @@ class ContactUpdateForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(ContactUpdateForm, self).__init__(*args, **kwargs)
+
+        locations = [(location.id, display_name(location))
+                     for location in Location.objects.all()]
+
+        self.fields['location'].choices = locations
 
         instance = kwargs.get('instance', None)
         if instance is not None:
@@ -55,11 +66,6 @@ class AddContactForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(AddContactForm, self).__init__(*args, **kwargs)
-
-        def display_name(location):
-            return "{} {}".format(
-                "-".join(["" for _ in range(location.level)]),
-                location.display_name)
 
         locations = [(location.id, display_name(location))
                      for location in Location.objects.all()]
@@ -189,6 +195,7 @@ def contact_details(request, identity, **kwargs):
         form = ContactUpdateForm(request.POST)
         if form.is_valid():
             contact.name = form.cleaned_data.get('name') or None
+            contact.location = form.cleaned_data.get('location') or None
             contact.role = form.cleaned_data.get('role') or None
             contact.position = form.cleaned_data.get('position') or None
             contact.save()
