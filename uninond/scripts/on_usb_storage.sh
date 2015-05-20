@@ -10,10 +10,18 @@ cd /home/uninond/uninond
 aplay ./uninond/static/please-wait.wav
 
 # mount the device in auto mode
-sudo mount -o uid=uninond,gid=users,fmask=113,dmask=002 ${DEVNAME}1 /mnt || { aplay ./uninond/static/export-failed.wav; exit 1; }
+sudo mount -o uid=uninond,gid=users,fmask=113,dmask=002 ${DEVNAME}1 /mnt || { 
+	aplay ./uninond/static/export-failed.wav;
+	sudo umount /mnt ;
+	exit 1;
+}
 
 # actually write report on media
-pew in uninondenv ./manage.py export_xls -f /mnt || { aplay ./uninond/static/export-failed.wav; exit 1; }
+sudo -u uninond LC_ALL=fr_FR.UTF-8 /usr/local/bin/pew in uninondenv ./manage.py export_xls -p /mnt || { 
+	aplay ./uninond/static/export-failed.wav;
+	sudo umount /mnt ; 
+	exit 1;
+}
 
 # unmount the device
 sleep 3

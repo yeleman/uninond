@@ -44,6 +44,12 @@ cp -v ../conf/root_crontab /var/spool/cron/crontabs/root
 chown root:crontab /var/spool/cron/crontabs/root
 chmod 600 /var/spool/cron/crontabs/root
 
+# locale
+cp -v ../conf/default_locale /etc/default/locale
+chmod 644 /etc/default/locale
+cp -v ../conf/environment /etc/environment
+chmod 644 /etc/environment
+
 # tty1 for autologin
 cp -v ../conf/tty1.conf /etc/init/tty1.conf
 chmod 644 /etc/init/tty1.conf
