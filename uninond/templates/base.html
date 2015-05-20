@@ -134,8 +134,12 @@ function updateACPI() {
 			} else {
 				icon_file = icon_map[data.status];
 			}
-			var remaining_txt = data.remaining[0] + "h" + data.remaining[1];
-			text = data.percent + "% (" + remaining_txt + ")";
+			if (data.remaining !== null) {
+				var remaining_txt = data.remaining[0] + "h" + data.remaining[1];	
+				text = data.percent + "% (" + remaining_txt + ")";
+			else {
+				text = data.percent + "%";
+			}
 		}
 		icon = '<img height="30" src="' + static_url_tmpl.replace('FILE', icon_file) + '" />';
 		$('.battery-bar').html(text + icon);
