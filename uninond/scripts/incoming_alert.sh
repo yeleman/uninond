@@ -6,4 +6,4 @@ cd $( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 aplay ../static/alert-siren.wav &
 
 # wake up screen
-xdotool key alt && xdotool key alt && xdotool key alt
+DISPLAY=:0 xdotool key alt && DISPLAY=:0 xdotool key alt && DISPLAY=:0 xdotool key alt
