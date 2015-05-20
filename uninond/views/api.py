@@ -18,10 +18,6 @@ logger = logging.getLogger(__name__)
 def acpi_status(request):
     try:
         name, status, percent, value, remaining = acpi.acpi()[-1]
-        name, status, percent, value, remaining = (
-            'Battery 0', 'Full', 100, None, None)
-        name, status, percent, value, remaining = (
-            'Battery 0', 'Discharging', 80, 21550, '05:59:10')
         remaining_tuple = [int(x) for x in remaining.split(":")]
         data = {
             'name': name,
