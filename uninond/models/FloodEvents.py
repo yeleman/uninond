@@ -184,6 +184,14 @@ class FloodEvent(models.Model):
         return self.current_value_of('flooded_area')
 
     @property
+    def verbose_flooded_area(self):
+        return self.get_verbose_flooded_area(self.flooded_area)
+
+    @classmethod
+    def get_verbose_flooded_area(cls, area):
+        return cls.AREAS.get(area)
+
+    @property
     def homes_destroyed(self):
         return self.current_value_of('homes_destroyed')
 

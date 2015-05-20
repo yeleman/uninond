@@ -32,11 +32,11 @@ urlpatterns = [
 
     url(r'^admin/', include(admin.site.urls)),
 
-    url(r'^addressbook/(?P<contact_identity>[\+0-9]+)/enable/?$',
+    url(r'^addressbook/(?P<identity>[\+0-9]+)/enable/?$',
         'uninond.views.dashboard.contact_enable', name='contact_enable'),
-    url(r'^addressbook/(?P<contact_identity>[\+0-9]+)/disable/?$',
+    url(r'^addressbook/(?P<identity>[\+0-9]+)/disable/?$',
         'uninond.views.dashboard.contact_disable', name='contact_disable'),
-    url(r'^addressbook/(?P<contact_identity>[\+0-9]+)/?$',
+    url(r'^addressbook/(?P<identity>[\+0-9]+)/?$',
         'uninond.views.dashboard.contact_details', name='contact_details'),
     url(r'^addressbook/?$',
 

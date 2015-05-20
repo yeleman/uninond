@@ -54,10 +54,14 @@ class Contact(models.Model):
         return self.short_name
 
     @property
+    def verbose_identity(self):
+        return phonenumber_repr(self.identity)
+
+    @property
     def short_name(self):
         if self.name:
             return self.name
-        return phonenumber_repr(self.identy)
+        return self.verbose_identity
 
     @property
     def is_main(self):
@@ -84,8 +88,11 @@ class Contact(models.Model):
             location=self.location.name)
 
     @property
-    def name_and_role(self):
-        return ""
+    def sms_name(self):
+        if self.name:
+            return "{name}/{num}".format(name=self.name,
+                                         num=self.verbose_identity)
+        return self.verbose_identity
 
     @classmethod
     def get_verbose_role(cls, role):

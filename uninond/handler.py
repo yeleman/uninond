@@ -89,7 +89,8 @@ def uninond_sms_handler(message):
                 message.respond("Une erreur s'est produite.")
                 return True
 
-    message.respond("Message non pris en charge.")
+    if len(normalized_phonenumber(message.identity)) == 12:
+        message.respond("Message non pris en charge.")
     return False
 
 
@@ -192,16 +193,16 @@ def create_event(message):
     text_base = ("{location} (cercle de {cercle}) a déclaré une "
                  "inondation avec surface submergée de {fa}, {hd} maisons "
                  "détruites, {nd} morts et {nw} blessés. Alerte par {contact}."
-                 "Maire de {commune}: {maire}.").format(
+                 " Maire de {commune}: {maire}.").format(
         location=event.location,
         cercle=event.location.get_cercle(),
-        fa=event.initial_flooded_area,
+        fa=FloodEvent.get_verbose_flooded_area(event.initial_flooded_area),
         hd=event.initial_homes_destroyed,
         nd=event.initial_dead,
         nw=event.initial_wounded,
         contact=event.created_by,
         commune=event.location.get_commune(),
-        maire=event.location.get_maire()
+        maire=getattr(event.location.get_maire(), 'sms_name', "-")
         )
     text_drpc = "[ALERTE INONDATION:{ident}] {base}".format(
         ident=event.verbose_ident, base=text_base)
@@ -223,7 +224,7 @@ def create_event(message):
     exec_cmd(os.path.join(settings.BASE_DIR, 'uninond',
                           'scripts', 'incoming_alert.sh'))
 
-    return reply.success("Votre alerte inondation pour {location} a bien"
+    return reply.success("Votre alerte inondation pour {location} a bien "
                          "été prise en compte. La DRPC est informée "
                          "ainsi que les autorités. Vous allez être rappellé. "
                          "En cas de besoin, appellez la DRPC au {hotline}."
@@ -301,16 +302,16 @@ def event_confirmed(message):
     text_base = ("{location} (cercle de {cercle}) a déclaré une "
                  "inondation avec surface submergée de {fa}, {hd} maisons "
                  "détruites, {nd} morts et {nw} blessés. Alerte par {contact}."
-                 "Maire de {commune}: {maire}.").format(
+                 " Maire de {commune}: {maire}.").format(
         location=event.location,
         cercle=event.location.get_cercle(),
-        fa=event.flooded_area,
+        fa=FloodEvent.get_verbose_flooded_area(event.flooded_area),
         hd=event.homes_destroyed,
         nd=event.dead,
         nw=event.wounded,
         contact=event.created_by,
         commune=event.location.get_commune(),
-        maire=event.location.get_maire()
+        maire=getattr(event.location.get_maire(), 'sms_name', "-")
         )
 
     if event.confirmed_comment:
@@ -404,16 +405,16 @@ def event_restrained(message):
     text_base = ("{location} (cercle de {cercle}) a déclaré une "
                  "inondation avec surface submergée de {fa}, {hd} maisons "
                  "détruites, {nd} morts et {nw} blessés. Alerte par {contact}."
-                 "Maire de {commune}: {maire}.").format(
+                 " Maire de {commune}: {maire}.").format(
         location=event.location,
         cercle=event.location.get_cercle(),
-        fa=event.flooded_area,
+        fa=FloodEvent.get_verbose_flooded_area(event.flooded_area),
         hd=event.homes_destroyed,
         nd=event.dead,
         nw=event.wounded,
         contact=event.created_by,
         commune=event.location.get_commune(),
-        maire=event.location.get_maire()
+        maire=getattr(event.location.get_maire(), 'sms_name', "-")
         )
 
     # dispatch alert to all
@@ -482,14 +483,14 @@ def event_cancelled(message):
 
     # broadcast update to all
     text_base = ("{location} (cercle de {cercle}) avait déclaré une "
-                 "inondation sans suite. Alerte par {contact}."
+                 "inondation sans suite. Alerte par {contact}. "
                  "Maire de {commune}: {maire}. Contactez DRPC pour plus "
                  "de détails.").format(
         location=event.location,
         cercle=event.location.get_cercle(),
         contact=event.created_by,
         commune=event.location.get_commune(),
-        maire=event.location.get_maire()
+        maire=getattr(event.location.get_maire(), 'sms_name', "-")
         )
 
     # dispatch alert to all

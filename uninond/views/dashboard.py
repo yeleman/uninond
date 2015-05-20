@@ -125,34 +125,44 @@ def addressbook(request, **kwargs):
     qs = Contact.objects.all()
 
     if request.method == 'POST':
-        form = SearchForm(request.POST)
-        if form.is_valid():
-            query = form.cleaned_data.get('query')
-            if query:
-                qs = qs.filter(name__icontains=query)
 
-        add_form = AddContactForm(request.POST)
-        if add_form.is_valid():
-            identity = add_form.cleaned_data.get('identity')
-            if Contact.get_or_none(identity) is not None:
-                return redirect('contact_details', contact_identity=identity)
+        action = request.POST.get('action') or "search"
 
-            contact = Contact.objects.create(
-                identity=identity,
-                name=add_form.cleaned_data.get('name') or None,
-                role=add_form.cleaned_data.get('role') or None,
-                position=add_form.cleaned_data.get('position') or None,
-                location=add_form.cleaned_data.get('location') or None)
-
-            if add_form.cleaned_data.get('is_main_contact'):
-                contact.location.main_contact = contact
-                contact.location.save()
-
-            messages.success(request, "Le contact «{}» a été créé."
-                                      .format(contact))
-            return redirect('addressbook')
+        if action == "search":
+            form = SearchForm(request.POST)
+            if form.is_valid():
+                query = form.cleaned_data.get('query')
+                if query:
+                    qs = qs.filter(name__icontains=query)
         else:
-            context.update({'open_add_form': True})
+            form = SearchForm()
+
+        if action == "add":
+            add_form = AddContactForm(request.POST)
+            if add_form.is_valid():
+                identity = add_form.cleaned_data.get('identity')
+                if Contact.get_or_none(identity) is not None:
+                    return redirect('contact_details',
+                                    identity=identity)
+
+                contact = Contact.objects.create(
+                    identity=identity,
+                    name=add_form.cleaned_data.get('name') or None,
+                    role=add_form.cleaned_data.get('role') or None,
+                    position=add_form.cleaned_data.get('position') or None,
+                    location=add_form.cleaned_data.get('location') or None)
+
+                if add_form.cleaned_data.get('is_main_contact'):
+                    contact.location.main_contact = contact
+                    contact.location.save()
+
+                messages.success(request, "Le contact «{}» a été créé."
+                                          .format(contact))
+                return redirect('addressbook')
+            else:
+                context.update({'open_add_form': True})
+        else:
+            add_form = AddContactForm()
     else:
         form = SearchForm()
         add_form = AddContactForm()
@@ -168,12 +178,12 @@ def addressbook(request, **kwargs):
                   context)
 
 
-def contact_details(request, contact_identity, **kwargs):
+def contact_details(request, identity, **kwargs):
     context = {'page': 'addressbook'}
 
-    contact = Contact.get_or_none(contact_identity)
+    contact = Contact.get_or_none(identity)
     if contact is None:
-        raise Http404("Contact introuvable: `{}`".format(contact_identity))
+        raise Http404("Contact introuvable: `{}`".format(identity))
 
     if request.method == 'POST':
         form = ContactUpdateForm(request.POST)
@@ -192,7 +202,7 @@ def contact_details(request, contact_identity, **kwargs):
                     contact.location.save()
 
             return redirect('contact_details',
-                            contact_identity=contact_identity)
+                            identity=identity)
     else:
         form = ContactUpdateForm(instance=contact)
 
@@ -204,23 +214,23 @@ def contact_details(request, contact_identity, **kwargs):
                   context)
 
 
-def contact_disable(request, contact_identity, **kwargs):
+def contact_disable(request, identity, **kwargs):
 
-    contact = Contact.get_or_none(contact_identity)
+    contact = Contact.get_or_none(identity)
     if contact is None:
-        raise Http404("Contact introuvable: `{}`".format(contact_identity))
+        raise Http404("Contact introuvable: `{}`".format(identity))
 
     contact.disable()
 
-    return redirect('contact_details', contact_identity=contact_identity)
+    return redirect('contact_details', identity=identity)
 
 
-def contact_enable(request, contact_identity, **kwargs):
+def contact_enable(request, identity, **kwargs):
 
-    contact = Contact.get_or_none(contact_identity)
+    contact = Contact.get_or_none(identity)
     if contact is None:
-        raise Http404("Contact introuvable: `{}`".format(contact_identity))
+        raise Http404("Contact introuvable: `{}`".format(identity))
 
     contact.enable()
 
-    return redirect('contact_details', contact_identity=contact_identity)
+    return redirect('contact_details', identity=identity)
