@@ -11,7 +11,7 @@ Ubuntu 14.04.2 with:
 
 ## Packages to install
 
-	acpi alsa-base alsa-utils feh firefox firefox-locale-fr fluxbox git-core gtk-chtheme gtk2-engines gtk2-engines-murrine hostapd python-pip tango-icon-theme vim xdotool unzip
+	acpi acpid alsa-base alsa-utils feh firefox firefox-locale-fr fluxbox git-core gtk-chtheme gtk2-engines gtk2-engines-murrine hostapd python-pip tango-icon-theme vim xdotool unzip isc-dhcp-server
 
 ## Configuration
 
