@@ -19,6 +19,8 @@ cp -v ../conf/acpi_powerbtn /etc/acpi/events/powerbtn
 chmod 644 /etc/acpi/events/{low_battery,powerbtn}
 
 # home
+cp -v ../conf/dot_bashrc ${HOMED}/.bashrc
+chmod 664 ${HOMED}/.bashrc
 cp -v ../conf/dot_fehbg ${HOMED}/.fehbg
 chmod 664 ${HOMED}/.fehbg
 cp -v ../conf/dot_xinitrc ${HOMED}/.xinitrc
@@ -49,6 +51,10 @@ cp -v ../conf/default_locale /etc/default/locale
 chmod 644 /etc/default/locale
 cp -v ../conf/environment /etc/environment
 chmod 644 /etc/environment
+
+# failsafe so boot don't spend minutes waiting for network
+cp -v ../conf/init_failsafe.conf /etc/init/failsafe.conf
+chmod 644 /etc/init/failsafe.conf
 
 # tty1 for autologin
 cp -v ../conf/tty1.conf /etc/init/tty1.conf

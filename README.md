@@ -45,7 +45,7 @@ Ubuntu 14.04.2 with:
 * Configure FondaSMS:
     * Server URL: `http://10.0.0.1:8000/fondasms`
     * Phone Number: `96172222`
-    * Poll interval: 1 minute
+    * Poll interval: 15 seconds
     * _not_ Keep new message
     * WiFi Sleep Policy: always stay connected
     * Network failover: do nothing

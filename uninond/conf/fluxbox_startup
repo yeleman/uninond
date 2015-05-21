@@ -8,6 +8,14 @@ export DISPLAY=:0
 
 /home/uninond/uninond/uninond/scripts/launch_ff.sh &
 
+sleep 3
+
+# then emulate a touch on F11 to go fullscreen
+xdotool key F11
+
+# set autosleep of screen to 1mn
+xset -display :0 dpms 60
+
 exec fluxbox
 # or if you want to keep a log:
 #exec fluxbox -log "/home/uninond/.fluxbox/log"
