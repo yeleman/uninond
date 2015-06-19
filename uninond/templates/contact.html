@@ -41,7 +41,7 @@
 		<caption>Tous les SMS échangée avec cette personne</caption>
 		<tr><th>Type</th><th>Date</th><th>Texte</th></tr>
 	</thead>
-	<tbody class="clickable-rows">
+	<tbody>
 	{% for sms in contact.messages.all %}
 	<tr data-id="{{ sms.id }}">
 		<td>{{ sms.verbose_direction }}</td>

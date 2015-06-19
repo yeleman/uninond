@@ -43,6 +43,9 @@
 
 {% block onJQready %}
 $('#contacts_list tr').on('click', function (e) {
+	if ($(this).data('identity') === undefined) {
+		return;
+	}
 	window.location = '{% url 'contact_details' 0 %}'.replace('0', $(this).data('identity'));
 });
 

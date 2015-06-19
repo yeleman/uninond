@@ -244,7 +244,7 @@ def event_confirmed(message):
         args_names = ['kw', 'event_ident',
                       'flooded_area', 'homes_destroyed',
                       'dead', 'wounded', 'comment']
-        args_values = message.content.strip().lower().split()
+        args_values = message.content.strip().lower().split(' ', 6)
         arguments = dict(zip(args_names, args_values))
         assert len(arguments) >= len(args_names) - 1
     except (ValueError, AssertionError):
@@ -294,8 +294,14 @@ def event_confirmed(message):
     now = timezone.now()
     # find or create contact
     contact = Contact.get_or_create(
-        identity=normalized_phonenumber(message.identity),
-        location=event.location)
+        identity=normalized_phonenumber(message.identity))
+    # only DRPC Mopti can send this
+    if contact is not None and contact.location is None:
+        contact.location = Location.get_or_none("mopti")
+        contact.save()
+    if contact is not None and contact.role is None:
+        contact.role = Contact.DRPC
+        contact.save()
 
     # update event
     event.confirm(flooded_area=arguments['flooded_area'],
@@ -404,8 +410,14 @@ def event_restrained(message):
     now = timezone.now()
     # find or create contact
     contact = Contact.get_or_create(
-        identity=normalized_phonenumber(message.identity),
-        location=event.location)
+        identity=normalized_phonenumber(message.identity))
+    # only DRPC Mopti can send this
+    if contact is not None and contact.location is None:
+        contact.location = Location.get_or_none("mopti")
+        contact.save()
+    if contact is not None and contact.role is None:
+        contact.role = Contact.DRPC
+        contact.save()
 
     # update event
     event.restrain(flooded_area=arguments['flooded_area'],
@@ -492,8 +504,14 @@ def event_cancelled(message):
 
     # find or create contact
     contact = Contact.get_or_create(
-        identity=normalized_phonenumber(message.identity),
-        location=event.location)
+        identity=normalized_phonenumber(message.identity))
+    # only DRPC Mopti can send this
+    if contact is not None and contact.location is None:
+        contact.location = Location.get_or_none("mopti")
+        contact.save()
+    if contact is not None and contact.role is None:
+        contact.role = Contact.DRPC
+        contact.save()
 
     # update event
     event.cancel(by=contact, at=now)

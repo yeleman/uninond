@@ -60,6 +60,8 @@
 	<dd>{{ event.dead }}</dd>
 	<dt>Blessés</dt>
 	<dd>{{ event.wounded }}</dd>
+	<dt>Commentaire</dt>
+	<dd>{{ event.comment }}</dd>
 	{% endif %}
 </dl>
 
@@ -68,7 +70,7 @@
 		<caption>Tous les SMS envoyés et reçus concernant cette inondation</caption>
 		<tr><th>Type</th><th>Numéro</th><th>Date</th><th>Texte</th></tr>
 	</thead>
-	<tbody class="clickable-rows">
+	<tbody>
 	{% for sms in event.messages.all %}
 	<tr data-id="{{ sms.id }}">
 		<td>{{ sms.verbose_direction }}</td>
@@ -80,10 +82,4 @@
 	</tbody>
 </table>
 
-{% endblock %}
-
-{% block onJQready %}
-$('#floodevents_list tr').on('click', function (e) {
-	window.location = '{% url 'event' 'aaa' %}'.replace('aaa', $(this).data('ident'));
-});
 {% endblock %}

@@ -29,6 +29,9 @@
 
 {% block onJQready %}
 $('#floodevents_list tr').on('click', function (e) {
+	if ($(this).data('ident') === undefined) {
+		return;
+	}
 	window.location = '{% url 'event' 'aaa' %}'.replace('aaa', $(this).data('ident'));
 });
 {% endblock %}
