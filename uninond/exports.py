@@ -224,7 +224,7 @@ def generate_xls_export():
         col = write_col(col, contact.name or BLANK)
 
         xl_set_col_width(fl_sheet, col, 8)
-        col = write_col(col, phonenumber_repr(message.identity))
+        col = write_col(col, phonenumber_repr(contact.identity))
 
         xl_set_col_width(fl_sheet, col, 4)
         col = write_col(col, contact.verbose_role or BLANK)
